@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+    <div class="container" id="home-title">
+        <h1>Welcome to the future of education of New York state</h1>
+        <div class="container" id="home-info">
+            <div class="row">
+                <p>Education is one of our driving forces on how to make our state great. Protecting our children's futures is
+                not only in the interest of our great state, but also for our great country!<br>We want to show the raw facts
+                in our school donations data, and where we need to increase funding in the great state of New York!</p>
+                <a id="home-diploma-img"><img src="{{ url_for ('static', filename='images/diploma-icon.png') }}"></a>
+                <p>Take a look at our dashboard tab to view our interactive graphs, so you can see what we've found in the data.
+                    <br>From there take a look at our mission tab, to see what we plan to do about it!</p>
+            </div>
+        </div>
+        <a id="home-seal-img"><img src="{{ url_for ('static', filename='images/seal-of-new-york.png') }}"></a>
+    </div>
+{% endblock %}
