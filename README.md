@@ -30,8 +30,15 @@ Users will be will be directed to the homepage, which will inform them on the mi
         - Home page
         - Dashboard page containting interactive graphs
         - View of govener plans
+        - Interactive graphs:
+        	- Number of donations in past 10 years in USD (Line Graph)
+        	- Resource allocation (Bar Graph)
+        	- Division by Poverty Area (Bar Graph)
+        	- Average Donations Nationwide Compared (Line)
+        	- Donation precentage For Primary subject (Pie)
+        	- New York State map showing levels of funding per area (Map) - Optimisitc
 
-- Mobile adptability
+- Mobile adaptability
 
 ## Tech Used
 
