@@ -4,7 +4,7 @@
 
 ### What is the app for?
 
-This is a web app to showcase a dashboard for school donations across New York state. The dashboard is owned by the Henry Curtis, who is aspiring to be governer of New York State. The dashboard is to assist in the governer's narrative on how bad funding is for school within the state. 
+This is a web app to showcase a dashboard for school donations across New York state. The dashboard is owned by the Henry Curtis, who is aspiring to be governer of New York State. The dashboard is to assist in the governer's narrative on how to help funding for New York State schools. 
 
 ### What does it do?
 
@@ -12,31 +12,31 @@ The web app will provide a story for the public. It will showcase data in an int
 
 ### How does it work?
 
-Users will be will be directed to the homepage, which will inform them on the mission of the aspiring governer. They will then be directed to an interactive dashboard. This will provide various charts informing the user on the current school funding, and visualisation of data will help the user understand clearer the positiong of funding within in the state. The user will then be led to a final page where they can view plans on how electing Henry as governer can help change the current state of schools, and how to contact the campaign. 
+Users will be will be directed to the homepage, which will inform them what this dashboard is being used for. 
+They will then be directed to an interactive dashboard. This will provide various charts informing the user on the current school donations, and visualisation of data will help the user understand clearer the positiong of funding within in the state. 
+The user can then move onto the mission page, which performs analysis on the graphs and explanations of what should be done about the findings. 
+There is a final page which contains contact information. 
 
 ## Features
 
 ### Existing features
 
-- None Yet
-
-### Features to implement
-
 - User based
     - Interactive Graphs
-    - Submit email
 
 - Display features
     - Home page
     - Dashboard page containting interactive graphs
-    - View of govener plans
+    - Analysis of Graphs and plans
+    - Contact page
     - Interactive graphs:
-        - Number of donations in past 10 years in USD (Line Graph)
-        - Resource allocation (Bar Graph)
-        - Division by Poverty Area (Bar Graph)
-        - Average Donations Nationwide Compared (Line)
-        - Donation precentage For Primary subject (Pie)
-        - New York State map showing levels of funding per area (Map)  **Optimisitc**
+    	- Selectors for Donation County and Donation District
+    	- Number displays to show total number of donations and amount in donations in USD
+        - Number of donations over 5 years in USD (Line Graph)
+        - Resource allocation by metro type (Row Graph)
+        - Resource allocation by Primary Subject (Row Graph)
+        - Allocation by Poverty (Pie)
+        - Year Selector (Pie)
 
 ## Tech Used
 
