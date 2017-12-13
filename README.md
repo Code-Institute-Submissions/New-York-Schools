@@ -26,7 +26,7 @@ Users will be will be directed to the homepage, which will inform them on the mi
     - Interactive Graphs
     - Submit email
 
-- Dislpay features
+- Display features
     - Home page
     - Dashboard page containting interactive graphs
     - View of govener plans
@@ -36,9 +36,7 @@ Users will be will be directed to the homepage, which will inform them on the mi
         - Division by Poverty Area (Bar Graph)
         - Average Donations Nationwide Compared (Line)
         - Donation precentage For Primary subject (Pie)
-        - New York State map showing levels of funding per area (Map) - Optimisitc
-
-- Mobile adaptability
+        - New York State map showing levels of funding per area (Map)  **Optimisitc**
 
 ## Tech Used
 

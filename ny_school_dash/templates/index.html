@@ -2,18 +2,33 @@
 <html>
     <head>
         <title>New York School Donations</title>
-        <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.min.css') }}">
+        <meta http-equiv="content-type" content="text/html; charset=UTF8">
+        <link rel="shortcut icon" href="{{ url_for ('static', filename='images/favicon.ico') }}">
+        <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/dc.css') }}">
         <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/keen-dashboards.css') }}">
+        <link rel="stylesheet" href="{{ url_for ('static', filename='lib/css/introjs.css') }}">
         <link rel="stylesheet" href="{{ url_for ('static', filename='css/custom.css') }}">
     </head>
-    <body>
+    <body style="background-image: url({{ url_for ('static',
+    filename='images/new-york-bckgrd.png') }})">
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapsable-content" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="./">New York State Schools</a>
+                <button id="tour-button" class="intro_button" type="button" autofocus
+                        onclick="javascript:introJs().start();" data-step="10" data-intro="Take a look around, and see what school funding to your
+             area is like. Once you're finished, head over to our mission tab to see what we plan to do!"
+             style="font-weight: normal" data-position="right">Take a Tour</button>
             </div>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav pull-right" id="navbar-collapsable-content">
                 <li><a href="/">Home</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/details">Our Mission</a></li>
@@ -26,12 +41,14 @@
         {% endblock %}
     </div>
     <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
-    <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/bootstrap.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
     <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
+    <script src="{{ url_for ('static', filename='lib/js/intro.js')}}"></script>
     <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
+    <script src="{{ url_for ('static', filename='js/templates.js')}}"></script>
     </body>
 </html>

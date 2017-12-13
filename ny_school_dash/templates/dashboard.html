@@ -1,110 +1,160 @@
 {% extends "index.html" %}
 {% block content %}
-  <div  id="outer" class="container-fluid">
-    <div class="row">
-      <div class="col-sm-8">
+    <div id="outer" class="container-fluid">
         <div class="row">
-          <!-- Time Chart -->
-          <div class="col-sm-12">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Number of Donations
-              </div>
-              <div class="chart-stage">
-                <div id="time-chart"></div>
-              </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <!-- County menu select -->
+                    <div class="col-md-3" data-step="1" data-intro="Choose the County you
+                    would like to know about" style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Donation County
+                            </div>
+                            <div class="chart-stage selector">
+                                <div id="county-menu-select"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- menu select -->
+
+                    <!-- District menu select -->
+                    <div class="col-md-3" data-step="2" data-intro="Choose the District you
+                    would like to know about" style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Donation District
+                            </div>
+                            <div class="chart-stage selector">
+                                <div id="district-menu-select"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- menu select -->
+
+                    <!-- Donations Number -->
+                    <div class="col-md-3" data-step="3" data-intro="This shows the total amount
+                    of school donations"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Total Number of Donations
+                            </div>
+                            <div class="chart-stage num-display">
+                                <div id="total-donations"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Donations Number -->
+
+                    <!-- Donations USD -->
+                    <div class="col-md-3" data-step="4" data-intro="Here you can see the total USD amount
+                        for school donations"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Total Amount of Donations in USD
+                            </div>
+                            <div class="chart-stage num-display">
+                                <div id="usd-donations"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Donations USD -->
+                </div>
             </div>
-          </div>
-          <!-- Time Chart -->
-
-          <!-- Resources -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Resources Type
-              </div>
-              <div class="chart-stage">
-                <div id="resource-type-row-chart"></div>
-              </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <!-- NY Time Chart -->
+                    <div id="ny-time-wrapper" class="col-md-12" data-step="5" data-intro="Here is a line graph to show amount
+                    of donations between 2010 and 2015"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Number of Donations in New York State
+                            </div>
+                            <div class="chart-stage">
+                                <div id="time-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- NY Time Chart -->
+                </div>
             </div>
-          </div>
-          <!-- Resources -->
+            <div class="col-md-8">
+                <div class="row">
+                    <!-- Resource Allocation -->
+                    <div class="col-md-12" data-step="6" data-intro="Here we can see how resources are allocated
+                        according to metro type"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Resource Allocation by Metro Type
+                            </div>
+                            <div class="chart-stage">
+                                <div id="metro-type-row-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Resource Allocation -->
 
-          <!-- funding Pie -->
-          <div class="col-sm-6">
-            <div class="chart-wrapper">
-              <div class="chart-title">
-                Funding Status
-              </div>
-              <div class="chart-stage">
-                <div id="funding-chart"></div>
-              </div>
+                    <!-- Subject Allocation -->
+                    <div class="col-md-12" data-step="7" data-intro="We then can see resource allocation by primary
+                        subject area"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Resource Allocation by Primary Subject
+                            </div>
+                            <div class="chart-stage">
+                                <div id="subject-area-row-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Subject Allocation -->
+                </div>
             </div>
-          </div>
-          <!-- funding Pie -->
-        </div>
-      </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <!-- Year Selector -->
+                    <div class="col-md-12" data-step="8" data-intro="This pie chart shows not only how much
+                        was given by year, but acts as a filter as well, just click which year you would like
+                        to see"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Year Selector
+                            </div>
+                            <div class="chart-stage">
+                                <div id="year-selector"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Poverty allocation -->
+                    <div class="col-md-12" data-step="9" data-intro="This pie chart is to show the amount given
+                        based on a schools poverty level"
+                         style="font-weight: normal" data-position="right">
+                        <div class="chart-wrapper">
+                            <div class="chart-title">
+                                Poverty Allocaiton
+                            </div>
+                            <div class="chart-stage">
+                                <div id="poverty-level-pie-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Poverty allocation -->
+                </div>
+            </div>
 
-      <!-- Poverty -->
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Poverty Level
-          </div>
-          <div class="chart-stage">
-            <div id="poverty-level-row-chart"></div>
-          </div>
         </div>
-      </div>
-      <!-- Poverty -->
-
-      <!-- menu select -->
-      <div class="col-sm-6">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Donation State
-          </div>
-          <div class="chart-stage">
-            <div id="menu-select"></div>
-          </div>
-        </div>
-      </div>
-      <!-- menu select -->
-
-      <!-- Metric 1 -->
-      <div class="col-sm-2">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Total Number of Donations
-          </div>
-          <div class="chart-stage" style="background: #33CC99;
-            position: relative;
-            font-size: 29px;
-            color: white;
-            vertical-align: middle;
-            text-align: center;
-            padding-top: 12px;
-            padding-bottom: 0px;">
-            <div id="number-projects-nd"></div>
-          </div>
-        </div>
-      </div>
-      <!-- Metric 1 -->
-
-      <!-- Metric 2 -->
-      <div class="col-sm-2">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-            Total Donations in USD
-          </div>
-          <div class="chart-stage">
-            <div id="total-donations-nd"></div>
-          </div>
-        </div>
-      </div>
-      <!-- Metric 2 -->
     </div>
-  </div>
-  <hr>
-  <p class="small text-muted"> Data viz &#9829; from Code Institute</p>
+    <hr>
+    <div>
+        <p class="small text-muted" id="data-footer">Data visualisation by Henry Curtis
+            <br>Data sourced from School Donors
+            <br>Assistance from Code Institute</p>
+    </div>
 {% endblock %}

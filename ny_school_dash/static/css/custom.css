@@ -1,8 +1,26 @@
-/* Home page */
+/* Index page */
+
+body {
+   background-size: cover;
+}
 
 #ny-content {
-    padding-top: 50px;
+   padding-top: 50px;
    text-align: center;
+   margin: 0;
+   height: 100vh;
+   width: 100vw;
+}
+
+.navbar button {
+   margin-top: 10px;
+   border-radius: 5px;
+
+}
+/* Home page */
+
+#home-title {
+   max-width: 700px;
 }
 
 #home-info {
@@ -19,61 +37,94 @@
    margin-top: 30px;
 }
 
-/* CSS for dashboard */
+/* Dashboard */
 
-#number-projects-nd {
-   font-size: 60px;
+#outer {
+   margin-top: 20px;
 }
 
-#total-donations-nd {
-    font-size: 60px;
-}
-
-
-.dc-chart g.row text {
-   fill: black;
-   font-size: 12px;
-}
-
-#total-projects {
-   background: #33CC99;
-   width: 200px;
-   position: relative;
-   height: 60px;
-   font-size: 29px;
+#data-footer {
    color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 12px;
-   padding-bottom: 0px;
 }
 
-#net-donations {
-   background: #33CC99;
-   width: 200px;
-   position: relative;
-   height: 60px;
-   font-size: 29px;
-   color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 12px;
-   padding-bottom: 0px;
+@media screen and (max-width: 768px){
+   #ny-time-wrapper {
+      display: none;
+   }
 }
 
+.chart-wrapper .chart-title {
+    font-size: 20px;
+}
 
 .dc-select-menu {
-   background: #33CC99;
-   width: 80%;
-   border: none;
-   position: relative;
-   height: 31px;
-   font-size: 15px;
-   color: white;
-   vertical-align: middle;
-   text-align: center;
-   padding-top: 4px;
-   padding-bottom: 0px;
-
+    width: inherit;
 }
 
+.dc-chart {
+    width: -webkit-fill-available;
+}
+
+.selector {
+    font-size: 30px;
+}
+
+.selector select {
+    text-align-last: center;
+}
+
+.num-display {
+   font-size: 30px;
+}
+
+
+#usd-donations {
+   margin-left: 10px;
+}
+
+.dc-chart text.pie-slice {
+    fill: grey;
+}
+/* Mission Page */
+
+#mission-page ol {
+    text-align: left;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#mission-page ul {
+    text-align: left;
+}
+
+#mission-page li {
+    padding: 10px 0;
+}
+
+/* Contact Page */
+
+#contact-page {
+    padding: 0 100px;
+}
+
+#contact-content {
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+#contact-list {
+    margin-top: 30px;
+    background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 10px;
+    width: fit-content;
+}
+
+#contact-list li {
+    opacity: 1;
+    font-size: 25px;
+}
+
+.glyphicon {
+    margin: 2px;
+}

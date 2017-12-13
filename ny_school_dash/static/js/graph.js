@@ -1,85 +1,146 @@
 queue()
-    .defer(d3.json, "/donorsUS/projects")
+    .defer(d3.json, "/dashboard/data")
     .await(makeGraphs);
 
-function makeGraphs(error, donorsUSProjects) {
+function makeGraphs(error, dashboard_data) {
     if (error) {
         console.error("makeGraphs error on receiving dataset:", error.statusText);
         throw error;
     }
 
-    //Clean donorsUSProjects data
+    // Donor data reformat date
     var dateFormat = d3.time.format("%Y-%m-%d %H:%M:%S");
-    donorsUSProjects.forEach(function (d) {
+
+    dashboard_data.forEach(function (d) {
         d["date_posted"] = dateFormat.parse(d["date_posted"]);
         d["date_posted"].setDate(1);
         d["total_donations"] = +d["total_donations"];
+        d.Year = d["date_posted"].getFullYear();
     });
 
+    //For Graphical data instances
 
-    //Create a Crossfilter instance
-    var ndx = crossfilter(donorsUSProjects);
+    //var topology = topojson.topology({foo: geojson});
 
-    //Define Dimensions
-    var dateDim = ndx.dimension(function (d) {
-        return d["date_posted"];
-    });
-    var resourceTypeDim = ndx.dimension(function (d) {
-        return d["resource_type"];
-    });
-    var povertyLevelDim = ndx.dimension(function (d) {
-        return d["poverty_level"];
-    });
+    //Create Crossfilter Instance
+    var ndx = crossfilter(dashboard_data);
+
+
+    // Defining Dimensions
     var stateDim = ndx.dimension(function (d) {
         return d["school_state"];
     });
-    var fundingStatus = ndx.dimension(function (d) {
-        return d["funding_status"];
+    var dateDim = ndx.dimension(function (d) {
+        return d["date_posted"];
+    });
+    var metroDim = ndx.dimension(function (d) {
+        return d["school_metro"];
+    });
+    var districtDim = ndx.dimension(function (d) {
+        return d["school_district"];
+    });
+    var primaryFocDim = ndx.dimension(function (d) {
+        return d["primary_focus_area"];
     });
 
+    var resourceTypeDim = ndx.dimension(function (d) {
+        return d["resource_type"];
+    });
+    var povertyDim = ndx.dimension(function (d) {
+        return d["poverty_level"];
+    });
 
-    //Calculate metrics
-    var numProjectsByDate = dateDim.group();
-    var numProjectsByResourceType = resourceTypeDim.group();
-    var numProjectsByPovertyLevel = povertyLevelDim.group();
-    var numProjectsByFundingStatus = fundingStatus.group();
-    var totalDonationsByState = stateDim.group().reduceSum(function (d) {
+    var yearDim = ndx.dimension(function (d) {
+        return +d.Year;
+    });
+    var countyDim = ndx.dimension(function (d) {
+        return d["school_county"]
+    });
+
+    var year_total = yearDim.group().reduceSum(function(d) {
         return d["total_donations"];
     });
-    var stateGroup = stateDim.group();
 
-
+    // Groupings
+    var numProjectsByDate = dateDim.group();
+    var nyResources = resourceTypeDim.group();
+    var projectsByMetro = metroDim.group();
+    var projectsByFocusArea = primaryFocDim.group();
+    var poverty_total = povertyDim.group();
+    var ny_counties = countyDim.group();
+    var ny_districts = districtDim.group();
     var all = ndx.groupAll();
     var totalDonations = ndx.groupAll().reduceSum(function (d) {
-        return d["total_donations"];
+        return d["total_donations"]
     });
 
-    //Define values (to be used in charts)
+    //Date variables
     var minDate = dateDim.bottom(1)[0]["date_posted"];
     var maxDate = dateDim.top(1)[0]["date_posted"];
 
-    //Charts
-    var timeChart = dc.lineChart("#time-chart");
-    var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
-    var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
-    var numberProjectsND = dc.numberDisplay("#number-projects-nd");
-    var totalDonationsND = dc.numberDisplay("#total-donations-nd");
-    var fundingStatusChart = dc.pieChart("#funding-chart");
-    var selectField = dc.selectMenu('#menu-select');
+    // Chart variables
+    var nyTimeChart = dc.lineChart("#time-chart");
+    var metroTypeChart = dc.rowChart("#metro-type-row-chart");
+    var subjectChart = dc.rowChart("#subject-area-row-chart");
+    var yearChart = dc.pieChart('#year-selector');
+    var povertyChart = dc.pieChart("#poverty-level-pie-chart");
+    var countySelectField = dc.selectMenu('#county-menu-select');
+    var districtSelectField = dc.selectMenu('#district-menu-select');
+    var totalDonationsDisplay = dc.numberDisplay('#total-donations');
+    var totalDonationsUSDDisplay = dc.numberDisplay('#usd-donations');
+
+    // Chart attributes and properties
+    nyTimeChart
+        .ordinalColors(["#00B2EE", "#F5DD14"])
+        .height(300)
+        .width(911)
+        .margins({top:20, right:20, bottom:30, left:40})
+        .dimension(dateDim)
+        .group(numProjectsByDate, "Total New York Donations")
+        .renderArea(true)
+        .brushOn(false)
+        .transitionDuration(500)
+        .clipPadding(5)
+        .x(d3.time.scale().domain([minDate, maxDate]))
+        .elasticX(true)
+        .elasticY(true)
+        .xAxisLabel("Year")
+        .yAxisLabel("Number of Donations")
+        .yAxis().ticks(6);
 
 
-    selectField
-        .dimension(stateDim)
-        .group(stateGroup);
+    yearChart
+        .ordinalColors(['#3399ff', '#66ccff', '#ccffff', '#ffff99', '#ffff66', '#ffff00'])
+        .height(300)
+        .width(400)
+        .dimension(yearDim)
+        .group(year_total);
 
-    numberProjectsND
+    povertyChart
+        .height(300)
+        .width(400)
+        .dimension(povertyDim)
+        .group(poverty_total)
+        .legend(dc.legend())
+        .renderTitle(false)
+        .renderLabel(false);
+
+    countySelectField
+        .dimension(countyDim)
+        .group(ny_counties);
+
+    districtSelectField
+        .dimension(districtDim)
+        .group(ny_districts);
+
+    totalDonationsDisplay
         .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
             return d;
         })
         .group(all);
 
-    totalDonationsND
+    totalDonationsUSDDisplay
         .formatNumber(d3.format("d"))
         .valueAccessor(function (d) {
             return d;
@@ -87,46 +148,24 @@ function makeGraphs(error, donorsUSProjects) {
         .group(totalDonations)
         .formatNumber(d3.format(".3s"));
 
-    timeChart
-        .ordinalColors(["#C96A23"])
-        .width(1200)
+    metroTypeChart
+        .dimension(metroDim)
+        .group(projectsByMetro)
+        .width(700)
         .height(300)
-        .margins({top: 30, right: 50, bottom: 30, left: 50})
-        .dimension(dateDim)
-        .group(numProjectsByDate)
-        .renderArea(true)
-        .transitionDuration(500)
-        .x(d3.time.scale().domain([minDate, maxDate]))
-        .elasticY(true)
-        .xAxisLabel("Year")
-        .yAxis().ticks(6);
+        .elasticX(true)
+        .title(function (d) {
+            return d.value;
+        });
 
 
-    resourceTypeChart
-        .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5", "#F5821F"])
-        .width(300)
-        .height(250)
-        .dimension(resourceTypeDim)
-        .group(numProjectsByResourceType)
-        .xAxis().ticks(4);
-
-    povertyLevelChart
-        .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5", "#F5821F"])
-        .width(300)
-        .height(250)
-        .dimension(povertyLevelDim)
-        .group(numProjectsByPovertyLevel)
-        .xAxis().ticks(4);
-
-    fundingStatusChart
-        .ordinalColors(["#79CED7", "#66AFB2", "#C96A23", "#D3D1C5", "#F5821F"])
-        .height(220)
-        .radius(90)
-        .innerRadius(40)
-        .transitionDuration(1500)
-        .dimension(fundingStatus)
-        .group(numProjectsByFundingStatus);
-
+    subjectChart
+        .dimension(primaryFocDim)
+        .group(projectsByFocusArea)
+        .width(700)
+        .height(300)
+        .elasticX(true)
+        .xAxis().ticks(5);
 
     dc.renderAll();
 }
