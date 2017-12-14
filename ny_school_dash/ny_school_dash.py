@@ -1,12 +1,13 @@
 from flask import Flask, render_template
 from pymongo import MongoClient
 import json
+import os
 
 app = Flask(__name__)
 
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
-DBS_NAME = 'donorsUSA'
+MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
+print MONGO_URI
+DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
 COLLECTION_NAME = 'projects'
 
 @app.route('/')
@@ -35,15 +36,12 @@ def dashboard_data():
         'num_donors': True, 'funding_status': True, 'date_posted': True
     }
 
-    with MongoClient(MONGODB_HOST, MONGODB_PORT) as conn:
+    with MongoClient(MONGO_URI) as conn:
         collection = conn[DBS_NAME][COLLECTION_NAME]
         projects = collection.find(projection=FIELDS, filter={"school_state": 'NY',
-                                                              "date_posted": {"$gt": '2010-01-01 00:00:00'}})
+                                                              "date_posted": {"$gt": '2010-01-01 00:00:00'}},
+                                   )
         return json.dumps(list(projects))
-
-@app.route('/map/data')
-def map_data():
-    FIELDS = {}
 
 if __name__ == '__main__':
     app.run(debug=True)
