@@ -6,9 +6,8 @@ import os
 app = Flask(__name__)
 
 MONGO_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017')
-print MONGO_URI
 DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
-COLLECTION_NAME = 'projects'
+COLLECTION_NAME = 'school_donations'
 
 @app.route('/')
 def index():
@@ -33,14 +32,12 @@ def dashboard_data():
         'school_longitude': True, 'school_metro': True, 'school_district': True, 'school_county': True,
         'primary_focus_subject': True, 'primary_focus_area': True, 'secondary_focus_subject': True,
         'secondary_focus_area': True, 'resource_type': True, 'poverty_level': True, 'total_donations': True,
-        'num_donors': True, 'funding_status': True, 'date_posted': True
+        'num_donors': True, 'funding_status': True, 'date_posted': True,
     }
 
     with MongoClient(MONGO_URI) as conn:
         collection = conn[DBS_NAME][COLLECTION_NAME]
-        projects = collection.find(projection=FIELDS, filter={"school_state": 'NY',
-                                                              "date_posted": {"$gt": '2010-01-01 00:00:00'}},
-                                   )
+        projects = collection.find(projection=FIELDS)
         return json.dumps(list(projects))
 
 if __name__ == '__main__':
