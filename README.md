@@ -59,12 +59,13 @@ There is a final page which contains contact information.
 
 ## Testing Done
 
-- Unit Testing
-- Functional Testing 
-- System Testing
-- Performance Testing
-- Usability Testing
-- Regression Testing 
+- HTML testing using HTML validator (https://validator.w3.org/)
+- CSS testing using CSS validator (http://www.css-validator.org/)
+- Javascript testing using JSHint (http://jshint.com/)
+- Python testing using PEP8 Tool (http://pep8online.com)
+- UX testing used by trialling with external parties
+- Performance testing by measuring load times and reducing.
+- Stress testing done by using limited browser functionality. 
 
 ## Contributing
 
