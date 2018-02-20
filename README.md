@@ -57,7 +57,16 @@ There is a final page which contains contact information.
 - [MongoDB] (https://www.mongodb.com/)
     - We use **MongoDB** for our NoSQL database. and local server testing. 
 
-    ## Contributing
+## Testing Done
+
+- Unit Testing
+- Functional Testing 
+- System Testing
+- Performance Testing
+- Usability Testing
+- Regression Testing 
+
+## Contributing
 
 ### Getting the code up and running
 1. Firstly you will need to clone this repository by running the ```git clone <project's Github URL>``` command
@@ -71,3 +80,8 @@ There is a final page which contains contact information.
 3. Once **requirements.txt** is installed run the **ny_school_dash.py** file in your python editor.
 4. The project will now run on [localhost](http://127.0.0.1:5000)
 5. Make changes to the code and if you think it belongs in here then just submit a pull request
+
+## Credits
+
+Thanks given to the Code Institute for guidance and teaching to assist in making this app. 
+Thanks also to dc-js GitHub for inspirations for interactive graphs and references. 

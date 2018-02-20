@@ -37,7 +37,7 @@ def dashboard_data():
 
     with MongoClient(MONGO_URI) as conn:
         collection = conn[DBS_NAME][COLLECTION_NAME]
-        projects = collection.find(projection=FIELDS)
+        projects = collection.find(projection=FIELDS, limit=20000)
         return json.dumps(list(projects))
 
 if __name__ == '__main__':
