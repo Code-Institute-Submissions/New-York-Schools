@@ -66,7 +66,7 @@ body {
 }
 
 .selector {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .selector select {
@@ -74,7 +74,7 @@ body {
 }
 
 .num-display {
-   font-size: 30px;
+   font-size: 20px;
 }
 
 
@@ -85,6 +85,15 @@ body {
 .dc-chart text.pie-slice {
     fill: grey;
 }
+
+#subject-area-row-chart g.row text {
+    fill: #5b5b5b;
+}
+
+#metro-type-row-chart g.row text {
+    fill: #5b5b5b;
+}
+
 /* Mission Page */
 
 #mission-page ol {

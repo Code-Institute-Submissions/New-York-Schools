@@ -66,6 +66,11 @@ There is a final page which contains contact information.
 - Usability Testing
 - Regression Testing 
 
+## Deployment
+
+Number of records have been limited to 20000 due to performance limitations of the free Heroku account. 
+Data source is up to date. Full data would be deployed in hosting. 
+
 ## Contributing
 
 ### Getting the code up and running

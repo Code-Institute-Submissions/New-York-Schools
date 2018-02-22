@@ -100,9 +100,9 @@ $(document).ready(function(){
 
 
           yearChart
-              .ordinalColors(['#3399ff', '#66ccff', '#ccffff', '#ffff99', '#ffff66', '#ffff00'])
               .height(300)
               .width(400)
+              .legend(dc.legend())
               .dimension(yearDim)
               .group(year_total);
 
@@ -142,11 +142,7 @@ $(document).ready(function(){
               .dimension(metroDim)
               .group(projectsByMetro)
               .width(700)
-              .height(300)
-              .elasticX(true)
-              .title(function (d) {
-                  return d.value;
-              });
+              .height(300);
 
 
           subjectChart
