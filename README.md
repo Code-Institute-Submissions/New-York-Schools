@@ -4,7 +4,7 @@
 
 ### What is the app for?
 
-This is a web app to showcase a dashboard for school donations across New York state. The dashboard is owned by the Henry Curtis, who is aspiring to be governer of New York State. The dashboard is to assist in the governer's narrative on how to help funding for New York State schools. 
+This is a web app to showcase a dashboard for school donations across New York state. The dashboard is owned by Henry Curtis, who is aspiring to be governer of New York State. The dashboard is to assist in the governer's narrative on how to help funding for New York State schools. 
 
 ### What does it do?
 
