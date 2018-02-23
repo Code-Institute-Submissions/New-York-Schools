@@ -52,7 +52,7 @@ There is a final page which contains contact information.
     - We use **D3.js** to create coordinates and axis for graphs. 
 - [Crossfilter] (http://square.github.io/crossfilter/)
     - We use **Crossfilter** to manipulate data for the graphs. 
-- [queue.js] ()
+- [queue.js] (https://github.com/d3/d3-queue)
     - We use **Queue.js** to queue data coming from multiple api's
 - [MongoDB] (https://www.mongodb.com/)
     - We use **MongoDB** for our NoSQL database. and local server testing. 
@@ -69,7 +69,7 @@ There is a final page which contains contact information.
 
 ## Deployment
 
-Number of records have been limited to 20000 due to performance limitations of the free Heroku account. 
+The number of records have been limited to 20000 due to performance limitations of the free Heroku account. 
 Data source is up to date. Full data would be deployed in hosting. 
 
 ## Contributing
